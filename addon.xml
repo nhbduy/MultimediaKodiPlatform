@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.multimedia.kodi.platform" name="Multimedia Kodi platform" version="0.1.0" provider-name="nhbduy">
+<addon id="multimedia.kodi.platform" name="Multimedia Kodi platform" version="0.1.0" provider-name="nhbduy">
 	<requires>
 		<import addon="xbmc.python" version="2.14.0"/>
 	</requires>
