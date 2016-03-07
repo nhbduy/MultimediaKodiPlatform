@@ -4,12 +4,12 @@
 		<import addon="xbmc.python" version="2.14.0"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
-		<provides>executable</provides>
+		<provides>audio video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-		<summary lang="en">Popup Multimedia Kodi platform</summary>
-		<description lang="en">Example Script to show my app</description>
+		<summary lang="en">Multimedia Kodi platform</summary>
+		<description lang="en">Send and receive your webcam with your friends</description>
 		<license>GNU General Public License, v3</license>
 		<language></language>
 		<forum>http://forum.kodi.tv</forum>
