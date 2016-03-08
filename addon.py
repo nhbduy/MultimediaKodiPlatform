@@ -1,11 +1,14 @@
-import xbmcaddon
+import xbmc
 import xbmcgui
+import xbmcaddon
 
-addon       =   xbmcaddon.Addon()
-addonname   =   addon.getAddonInfo('name')
+addon       =   xbmcaddon.Addon(id='multimedia.kodi.platform')
+title       =   addon.getAddonInfo('name')
+icon        =   addon.getAddonInfo('icon')
+webcamURL   =   addon.getSetting('localwebcam')    
 
-line1   =   "Multimedia Kodi platform"
-line2   =   "MULTIMEDIA BROADCASTING PLATFORM (ACCESSIBLE VIA KODI)"
-line3   =   "Version 0.1 (beta)"
+li  =   xbmcgui.ListItem(label=title, iconImage=icon, thumbnailImage=icon, path=webcamURL)
+li.setInfo(type='Video', infoLabels={ "Title" : title })
+li.setProperty('IsPlayable', 'true')
 
-xbmcgui.Dialog().ok(addonname, line1, line2, line3)
+xbmc.Player().play(item=webcamURL, listitem=li)
