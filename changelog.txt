@@ -1,1 +1,4 @@
 0.1.0 Initial version (beta)
+
+0.2.0 IP Camera version (beta)
+- Add function from IP Camera app (Google Play) for broadcasting camera on smartphone
