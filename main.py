@@ -23,6 +23,7 @@ icon = addon.getAddonInfo('icon')
 channelName = addon.getSetting('channelName')
 channelURL = addon.getSetting('channelURL')
 channelAvatar = addon.getSetting('channelAvatar')
+enableChannel = str(addon.getSetting(id="enableChannel"))
 
 # Get the plugin url in plugin:// notation.
 _url = sys.argv[0]
@@ -33,11 +34,24 @@ _handle = int(sys.argv[1])
 # Here we use a fixed set of properties simply for demonstrating purposes
 # In a "real life" plugin you will need to get info and links to video files/streams
 # from some web-site or online service.
-VIDEOS = {'My channel': [{'name': channelName,
+
+if enableChannel == 'true':
+    VIDEOS = {'My channel': [{'name': channelName,
                        'thumb': channelAvatar,
                        'video': channelURL}
                       ],
             'Friends channel': [{'name': 'Friend A',
+                      'thumb': 'http://www.vidsplay.com/vids/us_postal.jpg',
+                      'video': 'http://www.vidsplay.com/vids/us_postal.mp4'},
+                     {'name': 'Friend B',
+                      'thumb': 'http://www.vidsplay.com/vids/traffic1.jpg',
+                      'video': 'http://www.vidsplay.com/vids/traffic1.avi'},
+                     {'name': 'Friend C',
+                      'thumb': 'http://www.vidsplay.com/vids/traffic_arrows.jpg',
+                      'video': 'http://www.vidsplay.com/vids/traffic_arrows.mp4'}
+                     ]}
+else:
+    VIDEOS = {'Friends channel': [{'name': 'Friend A',
                       'thumb': 'http://www.vidsplay.com/vids/us_postal.jpg',
                       'video': 'http://www.vidsplay.com/vids/us_postal.mp4'},
                      {'name': 'Friend B',
