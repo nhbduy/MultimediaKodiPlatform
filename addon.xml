@@ -2,6 +2,12 @@
 <addon id="multimedia.kodi.platform" name="Multimedia Kodi Platform" version="0.2.0" provider-name="nhbduy">
 	<requires>
 		<import addon="xbmc.python" version="2.14.0"/>
+		<import addon="xbmc.addon" version="12.0.0"/>
+		<import addon="script.module.httplib2" version="0.8.0"/>
+		<import addon="script.module.six" version="1.7.3"/>
+        <import addon="script.module.youtube.dl" version="14.1104.0"/>
+        <import addon="script.module.requests" version="2.3.0"/>
+        <import addon="script.module.oauth.helper" version="0.0.7"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
 		<provides>audio video executable</provides>
