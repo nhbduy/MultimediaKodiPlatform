@@ -5,7 +5,7 @@ import xbmcaddon
 addon       =   xbmcaddon.Addon(id='multimedia.kodi.platform')
 title       =   addon.getAddonInfo('name')
 icon        =   addon.getAddonInfo('icon')
-webcamURL   =   addon.getSetting('localwebcam')    
+webcamURL   =   addon.getSetting('channelURL')    
 
 li  =   xbmcgui.ListItem(label=title, iconImage=icon, thumbnailImage=icon, path=webcamURL)
 li.setInfo(type='Video', infoLabels={ "Title" : title })
