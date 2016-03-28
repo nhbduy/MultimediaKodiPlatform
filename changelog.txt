@@ -2,3 +2,7 @@
 
 0.2.0 IP Camera version (beta)
 - Add function from IP Camera app (Google Play) for broadcasting camera on smartphone
+
+0.3.0 Channel settings version (beta)
+- Add channel settings : channel name, channel URL, channel avatar
+- Add icon addon

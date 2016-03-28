@@ -20,6 +20,7 @@ import xbmcaddon
 addon = xbmcaddon.Addon(id='multimedia.kodi.platform')
 title = addon.getAddonInfo('name')
 icon = addon.getAddonInfo('icon')
+channelName = addon.getSetting('channelName')
 channelURL = addon.getSetting('channelURL')
 channelAvatar = addon.getSetting('channelAvatar')
 
@@ -32,7 +33,7 @@ _handle = int(sys.argv[1])
 # Here we use a fixed set of properties simply for demonstrating purposes
 # In a "real life" plugin you will need to get info and links to video files/streams
 # from some web-site or online service.
-VIDEOS = {'My channel': [{'name': 'My name',
+VIDEOS = {'My channel': [{'name': channelName,
                        'thumb': channelAvatar,
                        'video': channelURL}
                       ],
