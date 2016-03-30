@@ -13,9 +13,12 @@ xbmc.Player().play(item=webcamURL, listitem=li)
 
 import sys
 from urlparse import parse_qsl
+import urllib, urllib2
+import json
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
+from unicodedata import category
 
 addon = xbmcaddon.Addon(id='multimedia.kodi.platform')
 title = addon.getAddonInfo('name')
@@ -30,44 +33,61 @@ _url = sys.argv[0]
 # Get the plugin handle as an integer number.
 _handle = int(sys.argv[1])
 
+_channels = "All channels"
+
 # Free sample videos are provided by www.vidsplay.com
 # Here we use a fixed set of properties simply for demonstrating purposes
 # In a "real life" plugin you will need to get info and links to video files/streams
 # from some web-site or online service.
 
-if enableChannel == 'true':
-    VIDEOS = {'My channel': [{'name': channelName,
-                       'thumb': channelAvatar,
-                       'video': channelURL}
-                      ],
-            'Friends channel': [{'name': 'Friend A',
-                      'thumb': 'http://www.vidsplay.com/vids/us_postal.jpg',
-                      'video': 'http://www.vidsplay.com/vids/us_postal.mp4'},
-                     {'name': 'Friend B',
-                      'thumb': 'http://www.vidsplay.com/vids/traffic1.jpg',
-                      'video': 'http://www.vidsplay.com/vids/traffic1.avi'},
-                     {'name': 'Friend C',
-                      'thumb': 'http://www.vidsplay.com/vids/traffic_arrows.jpg',
-                      'video': 'http://www.vidsplay.com/vids/traffic_arrows.mp4'}
-                     ]}
-else:
-    VIDEOS = {'Friends channel': [{'name': 'Friend A',
-                      'thumb': 'http://www.vidsplay.com/vids/us_postal.jpg',
-                      'video': 'http://www.vidsplay.com/vids/us_postal.mp4'},
-                     {'name': 'Friend B',
-                      'thumb': 'http://www.vidsplay.com/vids/traffic1.jpg',
-                      'video': 'http://www.vidsplay.com/vids/traffic1.avi'},
-                     {'name': 'Friend C',
-                      'thumb': 'http://www.vidsplay.com/vids/traffic_arrows.jpg',
-                      'video': 'http://www.vidsplay.com/vids/traffic_arrows.mp4'}
-                     ]}
+VIDEOS = {_channels: []}
+        
+def enable_my_channel():
+    url = 'http://iot.nguyenhoangbaoduy.info/enableMyChannel.php'
+    req = urllib2.Request(url)
+    
+    if enableChannel == 'true':       
+        sql = urllib.urlencode({'name': channelName,
+                                   'thumb': channelAvatar,
+                                   'video': channelURL,
+                                   'enable': 1}) 
+    else:
+        sql = urllib.urlencode({'name': channelName,
+                                   'thumb': channelAvatar,
+                                   'video': channelURL,
+                                   'enable': 0}) 
+        
+    response = urllib2.urlopen(req, sql)
+    json_source = json.load(response)
+    response.close()
 
+def load_list_channels():
+    url = 'http://iot.nguyenhoangbaoduy.info/getListChannel.php'
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    json_source = json.load(response)
+    response.close()
+    
+    #category = "channels"
+    
+    for channel in json_source['channels']:
+        try:
+            friend_name     =   channel['name'].encode('utf-8')
+            friend_thumb    =   channel['thumb'].encode('utf-8')
+            friend_video    =   channel['video'].encode('utf-8')
+            
+            VIDEOS[_channels].append({'name': friend_name,
+                       'thumb': friend_thumb,
+                       'video': friend_video})
+        except:
+            pass 
+        
 
 def get_categories():
     return VIDEOS.keys()
 
 
-def get_videos(category):
+def get_videos(category): 
     return VIDEOS[category]
 
 
@@ -76,6 +96,7 @@ def list_categories():
     categories = get_categories()
     # Create a list for our items.
     listing = []
+    
     # Iterate through categories
     for category in categories:
         # Create a list item with a text label and a thumbnail image.
@@ -114,6 +135,7 @@ def list_videos(category):
     videos = get_videos(category)
     # Create a list for our items.
     listing = []
+    
     # Iterate through videos.
     for video in videos:
         # Create a list item with a text label and a thumbnail image.
@@ -135,6 +157,7 @@ def list_videos(category):
         is_folder = False
         # Add our item to the listing as a 3-element tuple.
         listing.append((url, list_item, is_folder))
+    
     # Add our listing to Kodi.
     # Large lists and/or slower systems benefit from adding all items at once via addDirectoryItems
     # instead of adding one by ove via addDirectoryItem.
@@ -167,12 +190,15 @@ def router(paramstring):
     else:
         # If the plugin is called from Kodi UI without any parameters,
         # display the list of video categories
+        
         list_categories()
 
 
 if __name__ == '__main__':
     # Call the router function and pass the plugin call parameters to it.
     # We use string slicing to trim the leading '?' from the plugin call paramstring
+    load_list_channels()
+    enable_my_channel()
     router(sys.argv[2][1:])
 
 

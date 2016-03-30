@@ -6,3 +6,9 @@
 0.3.0 Channel settings version (beta)
 - Add channel settings : channel name, channel URL, channel avatar
 - Add icon addon
+
+0.3.0 Sharing settings version (beta)
+- Add sharing settings : protocol, server address, remote path, port, username, password
+
+1.0.0 Release version (v1)
+- Channels streaming : add your channel to database, view all channel enabled (your friends)

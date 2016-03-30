@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="multimedia.kodi.platform" 
     name="Multimedia Kodi Platform" 
-    version="0.3.0" 
+    version="1.0.0" 
     provider-name="nhbduy">
 <requires>
   <import addon="xbmc.python" version="2.24.0"/>

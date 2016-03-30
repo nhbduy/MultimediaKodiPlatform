@@ -7,7 +7,12 @@
         <setting label="Enable my channel (streaming):" type="bool" id="enableChannel" default="false" />
     </category>
     <category label="Sharing">
-        <setting label="Protocol:" type="enum" id="sharedProtocol" lvalues="Windows network (SMB)|Web server directory (HTTP)|Network File System (NFS)|FTP server|UPnP server" default="0" />
+        <setting label="Protocol:" type="enum" id="sharedProtocol" values="Windows network (SMB)|Web server directory (HTTP)|Network File System (NFS)|FTP server|UPnP server" default="0" />
+        <setting label="Server address:" type="text" id="sharedAddress" default="" />
+        <setting label="Remote path:" type="text" id="sharedPath" enable="!eq(-2,4)" default="" />
+        <setting label="Port:" type="number" id="sharedPort" enable="!eq(-3,0)+!eq(-3,4)+!eq(-3,2)" default="0" />
+        <setting label="Username:" type="text" id="sharedUsername" enable="!eq(-4,4)+!eq(-4,2)" default="" />
+        <setting label="Password:" type="text" id="sharedPassword" enable="!eq(-5,4)+!eq(-5,2)" option="hidden" default="" />
     </category>
     <!-- <category label="Video settings">
         <setting label="Window Width:" type="number" id="width" default="480" option="int" />
