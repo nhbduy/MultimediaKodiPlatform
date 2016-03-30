@@ -5,14 +5,14 @@
         <setting label="URL:" type="ipaddress" id="channelURL" default="http://192.168.0.1/" />
         <setting label="Port:" type="number" id="channelPort" default="8080" />
         <setting label="Extend URL (optional):" type="text" id="channelExtendURL" default="video" />
-        <setting label="Avatar:" type="text" id="channelAvatar" default="https://farm2.staticflickr.com/1579/26004307342_6693824ef9_m.jpg" />
+        <setting label="Avatar:" type="image" id="channelAvatar" default="" />
         <setting type="sep"/>
         <setting label="Enable my channel (streaming):" type="bool" id="enableChannel" default="false" />
         <setting type="sep"/>
     </category>
     <category label="Multimedia sharing">
-        <setting label="File name:" type="text" id="fileName" default="Sample Video" />
-        <setting label="File path:" type="file" id="fileURL" source="auto" option="writeable" />
+        <setting label="File name:" type="text" id="fileName" default="Sample video" />
+        <setting label="File path:" type="file" id="fileURL" source="auto" option="writeable" default="" />
     	<setting label="File type:" type="enum" id="fileType" values="Videos|Audios|Images|Files" default="0" />
     </category>
     <category label="Server sharing">
