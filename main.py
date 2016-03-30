@@ -24,7 +24,7 @@ addon = xbmcaddon.Addon(id='multimedia.kodi.platform')
 title = addon.getAddonInfo('name')
 icon = addon.getAddonInfo('icon')
 channelName = addon.getSetting('channelName')
-channelURL = addon.getSetting('channelURL')
+channelURL = "http://" + addon.getSetting('channelURL') + ":" + str(addon.getSetting(id="channelPort")) + "/" + addon.getSetting('channelExtendURL')
 channelAvatar = addon.getSetting('channelAvatar')
 enableChannel = str(addon.getSetting(id="enableChannel"))
 
@@ -41,46 +41,6 @@ _channels = "All channels"
 # from some web-site or online service.
 
 VIDEOS = {_channels: []}
-        
-def enable_my_channel():
-    url = 'http://iot.nguyenhoangbaoduy.info/enableMyChannel.php'
-    req = urllib2.Request(url)
-    
-    if enableChannel == 'true':       
-        sql = urllib.urlencode({'name': channelName,
-                                   'thumb': channelAvatar,
-                                   'video': channelURL,
-                                   'enable': 1}) 
-    else:
-        sql = urllib.urlencode({'name': channelName,
-                                   'thumb': channelAvatar,
-                                   'video': channelURL,
-                                   'enable': 0}) 
-        
-    response = urllib2.urlopen(req, sql)
-    json_source = json.load(response)
-    response.close()
-
-def load_list_channels():
-    url = 'http://iot.nguyenhoangbaoduy.info/getListChannel.php'
-    req = urllib2.Request(url)
-    response = urllib2.urlopen(req)
-    json_source = json.load(response)
-    response.close()
-    
-    #category = "channels"
-    
-    for channel in json_source['channels']:
-        try:
-            friend_name     =   channel['name'].encode('utf-8')
-            friend_thumb    =   channel['thumb'].encode('utf-8')
-            friend_video    =   channel['video'].encode('utf-8')
-            
-            VIDEOS[_channels].append({'name': friend_name,
-                       'thumb': friend_thumb,
-                       'video': friend_video})
-        except:
-            pass 
         
 
 def get_categories():
@@ -192,13 +152,66 @@ def router(paramstring):
         # display the list of video categories
         
         list_categories()
+        
+######################################################
+def enable_my_channel():
+    url = 'http://iot.nguyenhoangbaoduy.info/enableMyChannel.php'
+    req = urllib2.Request(url)
+    
+    if enableChannel == 'true':       
+        sql = urllib.urlencode({'name': channelName,
+                                   'thumb': channelAvatar,
+                                   'video': channelURL,
+                                   'enable': 1}) 
+    else:
+        sql = urllib.urlencode({'name': channelName,
+                                   'thumb': channelAvatar,
+                                   'video': channelURL,
+                                   'enable': 0}) 
+        
+    response = urllib2.urlopen(req, sql)
+    json_source = json.load(response)
+    response.close()
+
+def load_list_channels():
+    url = 'http://iot.nguyenhoangbaoduy.info/getListChannel.php'
+    req = urllib2.Request(url)
+    response = urllib2.urlopen(req)
+    json_source = json.load(response)
+    response.close()
+    
+    #category = "channels"
+    
+    for channel in json_source['channels']:
+        try:
+            friend_name     =   channel['name'].encode('utf-8')
+            friend_thumb    =   channel['thumb'].encode('utf-8')
+            friend_video    =   channel['video'].encode('utf-8')
+            
+            VIDEOS[_channels].append({'name': friend_name,
+                       'thumb': friend_thumb,
+                       'video': friend_video})
+        except:
+            pass 
+######################################################        
+##########################################
+protocol = addon.getSetting('sharedProtocol')
+server = addon.getSetting('sharedAddress')
+
+def sharing():
+    if protocol == 1:
+        li = xbmcgui.ListItem(label=server)
+        #li.setInfo(type='Video', infoLabels={ "Title": title })
+        #li.setProperty('IsPlayable', 'true')
+    else:
+        li = xbmcgui.ListItem(label="Test")
 
 
 if __name__ == '__main__':
-    # Call the router function and pass the plugin call parameters to it.
-    # We use string slicing to trim the leading '?' from the plugin call paramstring
     load_list_channels()
     enable_my_channel()
+    # Call the router function and pass the plugin call parameters to it.
+    # We use string slicing to trim the leading '?' from the plugin call paramstring
     router(sys.argv[2][1:])
 
 

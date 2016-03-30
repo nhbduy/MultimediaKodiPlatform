@@ -2,9 +2,13 @@
 <settings>
     <category label="Channel">
         <setting label="Channel name:" type="text" id="channelName" default="" />
-        <setting label="URL:" type="text" id="channelURL" default="http://172.22.255.145:8888/" />
+        <setting label="URL:" type="ipaddress" id="channelURL" default="http://172.22.255.145/" />
+        <setting label="Port:" type="number" id="channelPort" default="8080" />
+        <setting label="Extend URL (optional):" type="text" id="channelExtendURL" default="" />
         <setting label="Avatar:" type="text" id="channelAvatar" default="https://farm2.staticflickr.com/1579/26004307342_6693824ef9_m.jpg" />
+        <setting type="sep"/>
         <setting label="Enable my channel (streaming):" type="bool" id="enableChannel" default="false" />
+        <setting type="sep"/>
     </category>
     <category label="Sharing">
         <setting label="Protocol:" type="enum" id="sharedProtocol" values="Windows network (SMB)|Web server directory (HTTP)|Network File System (NFS)|FTP server|UPnP server" default="0" />
@@ -13,6 +17,8 @@
         <setting label="Port:" type="number" id="sharedPort" enable="!eq(-3,0)+!eq(-3,4)+!eq(-3,2)" default="0" />
         <setting label="Username:" type="text" id="sharedUsername" enable="!eq(-4,4)+!eq(-4,2)" default="" />
         <setting label="Password:" type="text" id="sharedPassword" enable="!eq(-5,4)+!eq(-5,2)" option="hidden" default="" />
+        
+        <setting label="Browse" type="video" id="folder" source="auto" option="writeable"/>
     </category>
     <!-- <category label="Video settings">
         <setting label="Window Width:" type="number" id="width" default="480" option="int" />
