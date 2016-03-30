@@ -7,7 +7,7 @@
 - Add channel settings : channel name, channel URL, channel avatar
 - Add icon addon
 
-0.3.0 Sharing settings version (beta)
+0.4.0 Sharing settings version (beta)
 - Add sharing settings : protocol, server address, remote path, port, username, password
 
 1.0.0 Release version (v1)
