@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="Channel">
-        <setting label="Channel name:" type="text" id="channelName" default="" />
-        <setting label="URL:" type="ipaddress" id="channelURL" default="http://172.22.255.145/" />
+        <setting label="Channel name:" type="text" id="channelName" default="User" />
+        <setting label="URL:" type="ipaddress" id="channelURL" default="http://192.168.0.1/" />
         <setting label="Port:" type="number" id="channelPort" default="8080" />
-        <setting label="Extend URL (optional):" type="text" id="channelExtendURL" default="" />
+        <setting label="Extend URL (optional):" type="text" id="channelExtendURL" default="video" />
         <setting label="Avatar:" type="text" id="channelAvatar" default="https://farm2.staticflickr.com/1579/26004307342_6693824ef9_m.jpg" />
         <setting type="sep"/>
         <setting label="Enable my channel (streaming):" type="bool" id="enableChannel" default="false" />
         <setting type="sep"/>
     </category>
     <category label="Multimedia sharing">
-        <setting label="File name:" type="text" id="fileName" default="File shared (default)" />
-        <setting label="File sharing:" type="file" id="sharedFile" source="auto" option="writeable" />
+        <setting label="File name:" type="text" id="fileName" default="Sample Video" />
+        <setting label="File path:" type="file" id="fileURL" source="auto" option="writeable" />
+    	<setting label="File type:" type="enum" id="fileType" values="Videos|Audios|Images|Files" default="0" />
     </category>
     <category label="Server sharing">
         <setting label="Protocol:" type="enum" id="sharedProtocol" values="Windows network (SMB)|Web server directory (HTTP)|Network File System (NFS)|FTP server|UPnP server" default="0" />
