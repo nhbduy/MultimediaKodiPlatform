@@ -11,7 +11,7 @@
 </extension>
 <extension point="xbmc.addon.metadata">
   		<summary lang="en">Multimedia Kodi Platform</summary>
-		<description lang="en">Send and receive your webcam with your friends. Send videos, images, notes, lists and addresses between Kodi/XBMC. Currently allows viewing of videos, images, audio, notes, addresses (with map) and lists (checkable).</description>
+		<description lang="en">Send and receive your camera with your friends. Share multimedia files between Kodi/XBMC via multiple protocols (SMB, NFS, HTTP, FTP, UPnP). Currently allows viewing of videos, images, audio.</description>
 		<license>GNU General Public License, v3</license>
 		<forum>http://forum.kodi.tv</forum>
 		<source>https://github.com/nhbduy/MultimediaKodiPlatform</source>
