@@ -10,15 +10,17 @@
         <setting label="Enable my channel (streaming):" type="bool" id="enableChannel" default="false" />
         <setting type="sep"/>
     </category>
-    <category label="Sharing">
+    <category label="Multimedia sharing">
+        <setting label="File name:" type="text" id="fileName" default="File shared (default)" />
+        <setting label="File sharing:" type="file" id="sharedFile" source="auto" option="writeable" />
+    </category>
+    <category label="Server sharing">
         <setting label="Protocol:" type="enum" id="sharedProtocol" values="Windows network (SMB)|Web server directory (HTTP)|Network File System (NFS)|FTP server|UPnP server" default="0" />
-        <setting label="Server address:" type="text" id="sharedAddress" default="" />
-        <setting label="Remote path:" type="text" id="sharedPath" enable="!eq(-2,4)" default="" />
+        <setting label="Server address:" type="folder" id="sharedAddress" source="auto" option="writeable" />
+<!--         <setting label="Remote path:" type="folder" id="sharedPath" enable="!eq(-2,4)" default="" /> -->
         <setting label="Port:" type="number" id="sharedPort" enable="!eq(-3,0)+!eq(-3,4)+!eq(-3,2)" default="0" />
         <setting label="Username:" type="text" id="sharedUsername" enable="!eq(-4,4)+!eq(-4,2)" default="" />
         <setting label="Password:" type="text" id="sharedPassword" enable="!eq(-5,4)+!eq(-5,2)" option="hidden" default="" />
-        
-        <setting label="Browse" type="video" id="folder" source="auto" option="writeable"/>
     </category>
     <!-- <category label="Video settings">
         <setting label="Window Width:" type="number" id="width" default="480" option="int" />
